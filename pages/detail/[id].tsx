@@ -18,7 +18,11 @@ export default Detail
 export async function getStaticPaths() {
   const listShop = await getShop()
   const paths = listShop.map(shop => ({params: {id: shop.id}}))
+  console.log(paths);
+  
   return {paths, fallback: false}
+  //trả về mảng chứa các params id để thằng getStaticProps có thể load trước dữ liệu
+  //từ cái params id
 }
 
 export async function getStaticProps(context: any) {

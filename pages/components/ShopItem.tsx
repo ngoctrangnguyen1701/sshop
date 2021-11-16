@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShareIcon from '@mui/icons-material/Share'
+import Button from '@mui/material/Button'
 import { useRouter } from "next/dist/client/router"
 
 const ShopItem = (props: any) => {
@@ -18,7 +19,7 @@ const ShopItem = (props: any) => {
 
   const onClick = () => router.push('/detail/' + id)
   return (
-    <Grid item md={6} xl={3} onClick={onClick}>
+    <Grid item md={6} xl={3}>
       <Card sx={{ maxWidth: 345, boxShadow: 6, borderRadius: 5 }}>
         <CardHeader
           avatar={<Avatar src={avatar} alt={name} />}
@@ -43,6 +44,12 @@ const ShopItem = (props: any) => {
           <IconButton aria-label="share">
             <ShareIcon />
           </IconButton>
+          <Button
+            variant="contained" color="success"
+            onClick={onClick}
+            className="d-block ms-auto"
+          >
+          Watch detail</Button>
         </CardActions>
       </Card>
     </Grid>
