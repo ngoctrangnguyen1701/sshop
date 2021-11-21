@@ -1,14 +1,25 @@
 import type { NextPage } from 'next'
+import { useContext } from 'react'
 import { getShop, getShopDetail } from '../api'
+import {
+  Container
+} from '@mui/material'
+import { ColorThemeContext } from '../contexts/ColorThemeContext'
 import ShopItem from '../components/ShopItem'
+import Header from '../components/Header'
 
 const Detail: NextPage = (props) => {
   console.log(props.data)
-  
+  const { colorTheme } = useContext(ColorThemeContext)
+
+
   return (
-    <div>
-      <h1>Detail</h1>
-      <ShopItem {...props.data}/>
+    <div style={{backgroundColor: colorTheme.backgroundColorContent}}>
+      <Header/>
+      <Container>
+        <h1>Detail</h1>
+        <ShopItem {...props.data}/>
+      </Container>
     </div>
   )
 }

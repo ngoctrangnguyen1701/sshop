@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import Card from '@mui/material/Card'
 import Grid from '@mui/material/Grid'
 import CardHeader from '@mui/material/CardHeader'
@@ -12,15 +12,21 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShareIcon from '@mui/icons-material/Share'
 import Button from '@mui/material/Button'
 import { useRouter } from "next/dist/client/router"
+import { refreshDataGlobal } from '../../common/redux'
+import { ColorThemeContext } from "../contexts/ColorThemeContext"
 
 const ShopItem = (props: any) => {
+  const {colorTheme} = useContext(ColorThemeContext)
   const { id, name, avatar, coverImage, description, registerDate } = props
   const router = useRouter()
 
-  const onClick = () => router.push('/detail/' + id)
+  const onClick = () => {
+    router.push('/detail/' + id)
+    refreshDataGlobal()
+  }
   return (
-    <Grid item md={6} xl={3}>
-      <Card sx={{ maxWidth: 345, boxShadow: 6, borderRadius: 5 }}>
+    <Grid item md={6} lg={3}>
+      <Card sx={{ boxShadow: 6, borderRadius: 5 }}>
         <CardHeader
           avatar={<Avatar src={avatar} alt={name} />}
           title={name}
@@ -45,9 +51,10 @@ const ShopItem = (props: any) => {
             <ShareIcon />
           </IconButton>
           <Button
-            variant="contained" color="success"
+            variant="contained" 
             onClick={onClick}
             className="d-block ms-auto"
+            style={{backgroundColor: colorTheme.color}}
           >
           Watch detail</Button>
         </CardActions>

@@ -5,14 +5,14 @@ import type { AppProps } from 'next/app'
 import Head from "next/head";
 import { store } from '../controller/redux/store/configureStore';
 import { Provider } from 'react-redux'
-
-
+import { ColorThemeProvider } from './contexts/ColorThemeContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     import("bootstrap/dist/js/bootstrap");
-    const body = document.getElementsByTagName('body')[0]
-    body.style.backgroundColor = 'rgb(232, 248, 231)'
+    /* const body = document.getElementsByTagName('body')[0]
+    body.style.backgroundColor = 'rgb(232, 248, 231)' */
+
   }, [])
 
   return (
@@ -29,7 +29,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
         />
       </Head>
-      <Component {...pageProps } />
+      <ColorThemeProvider>
+        <Component {...pageProps } />
+      </ColorThemeProvider>
     </Provider>
   )
 }

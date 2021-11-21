@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { IShop } from '../interface'
 
 const listShop: IShop[] = [
@@ -37,7 +38,49 @@ const listShop: IShop[] = [
     registerDate: '01-01-2021',
     onlineTime: 8
   },
+  {
+    id: '5',
+    name: 'Shoe Shop 5',
+    avatar: '/images/avatars/avatar_5.jpg',
+    coverImage: '/images/products/product_5.jpg',
+    description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.',
+    registerDate: '01-01-2021',
+    onlineTime: 8
+  },
+  {
+    id: '6',
+    name: 'Shoe Shop 6',
+    avatar: '/images/avatars/avatar_6.jpg',
+    coverImage: '/images/products/product_6.jpg',
+    description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.',
+    registerDate: '01-01-2021',
+    onlineTime: 8
+  },
+  {
+    id: '7',
+    name: 'Shoe Shop 7',
+    avatar: '/images/avatars/avatar_7.jpg',
+    coverImage: '/images/products/product_7.jpg',
+    description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.',
+    registerDate: '01-01-2021',
+    onlineTime: 8
+  },
+  {
+    id: '8',
+    name: 'Shoe Shop 8',
+    avatar: '/images/avatars/avatar_8.jpg',
+    coverImage: '/images/products/product_8.jpg',
+    description: 'This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.',
+    registerDate: '01-01-2021',
+    onlineTime: 8
+  },
 ]
+
+type CreateShopType = {
+  name: string,
+  description: string,
+  registerDate: string
+}
 
 export async function getShop() {
   //chưa gọi api
@@ -54,4 +97,14 @@ export async function getShopDetail(id: string) {
   const result = listShop.find(shop => shop.id === id)
   //trả về cái shop chứa id trùng với tham số id truyền vào
   return result
+}
+
+export async function createShop(payload: CreateShopType) {
+  axios.post('http://45.77.244.252:3041/api/shop', payload)
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 }
